@@ -1,0 +1,119 @@
+<div class="modal-body">    
+    <div>
+        <h3>New Pet</h3>
+        <div>
+            <div class="row">
+                <form [formGroup]="formNew">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="Name">Pet Name:</label>
+                                <div>
+                                    <input type="text" class="form-control" id="Name" formControlName="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Gender">Gender:</label>
+                                <div>
+                                    <input type="radio" class="form-check-input" id="GenderM" name="Gender"
+                                        formControlName="Gender" value="M" (change)="onChangeGender($event)">
+                                    <label for="GenderM">M</label><br>
+                                    <input type="radio" class="form-check-input" id="GenderF" name="Gender"
+                                        formControlName="Gender" value="F" (change)="onChangeGender($event)">
+                                    <label for="GenderF">F</label><br>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Age">Age:</label>
+                                <div>
+                                    <input type="number" class="form-control" id="Age" formControlName="Age">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Weight">Weight (kg):</label>
+                                <div>
+                                    <input type="number" class="form-control" id="Weight" formControlName="Weight">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Vaccines">Vaccinations up to date:</label>
+                                <div>
+                                    <input type="radio" class="form-check-input" id="VaccinesY" name="Vaccines"
+                                        formControlName="Vaccines" value="true" (change)="onChangeVaccines($event)">
+                                    <label for="VaccinesM">Yes</label><br>
+                                    <input type="radio" class="form-check-input" id="VaccinesF" name="Vaccines"
+                                        formControlName="Vaccines" value="false" (change)="onChangeVaccines($event)">
+                                    <label for="VaccinesF">No</label><br>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Microchip">Microchip:</label>
+                                <div>
+                                    <input type="radio" class="form-check-input" id="MicrochipY" name="Microchip"
+                                        formControlName="Microchip" value="true" (change)="onChangeMicrochip($event)">
+                                    <label for="MicrochipY">Yes</label><br>
+                                    <input type="radio" class="form-check-input" id="MicrochipF" name="Microchip"
+                                        formControlName="Microchip" value="false" (change)="onChangeMicrochip($event)">
+                                    <label for="MicrochipF">No</label><br>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="CodeMicroChip">CodeMicroChip:</label>
+                                <div>
+                                    <input type="text" class="form-control" id="CodeMicroChip"
+                                        formControlName="CodeMicroChip" (disabled)="hasMicroChip">
+                                </div>
+                            </div>                            
+                            <div class="col-md-6">
+                                <label for="Observations">Observations:</label>
+                                <div>
+                                    <input type="text" class="form-control" id="Observations"
+                                        formControlName="Observations">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-form-label" for="Breed">Breed:</label>
+                                <div class="">
+                                    <div dropdown bootstrap-select show-tick form-control dropup>
+                                        <select class="selectpicker form-control" formControlName="Breed" id="Breed"
+                                            multiple title="Select option">
+                                            <option value={{item.id}} *ngFor="let item of dropBreed">
+                                                {{item.description}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-form-label" for="TypePet">Type Pet:</label>
+                                <div class="">
+                                    <div dropdown bootstrap-select show-tick form-control dropup>
+                                        <select class="selectpicker form-control" formControlName="TypePet" id="TypePet"
+                                            multiple title="Select option">
+                                            <option value={{item.id}} *ngFor="let item of dropTypePet">
+                                                {{item.description}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div class="mt-2 alert alert-warning" role="alert" *ngIf="messageError">
+                    {{messageError}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer" style="text-align:center">
+    <button type="button" class="btn btn-primary" (click)="SaveRecord()">
+        Save New Pet
+    </button>
+    <button type="button" class="btn btn-danger" (click)="CloseModal()">
+        Close
+    </button>
+</div>
